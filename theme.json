@@ -1,0 +1,229 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.5/theme.json",
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": false,
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{
+					"slug": "cream",
+					"name": "Krem (latar)",
+					"color": "#FFF6E8"
+				},
+				{
+					"slug": "cream-2",
+					"name": "Krem tua (panel)",
+					"color": "#FFEBD3"
+				},
+				{
+					"slug": "orange",
+					"name": "Oranye pastel",
+					"color": "#FFC7A0"
+				},
+				{
+					"slug": "orange-d",
+					"name": "Oranye (tombol)",
+					"color": "#F9954F"
+				},
+				{
+					"slug": "blue",
+					"name": "Biru muda",
+					"color": "#CDE8F8"
+				},
+				{
+					"slug": "blue-d",
+					"name": "Biru",
+					"color": "#8CC6EA"
+				},
+				{
+					"slug": "ink",
+					"name": "Cokelat gelap (teks)",
+					"color": "#3B2A22"
+				},
+				{
+					"slug": "ink-soft",
+					"name": "Cokelat lembut",
+					"color": "#6A5448"
+				},
+				{
+					"slug": "white",
+					"name": "Putih",
+					"color": "#FFFFFF"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "1120px",
+			"wideSize": "1200px"
+		},
+		"typography": {
+			"fluid": false,
+			"defaultFontSizes": false,
+			"fontSizes": [
+				{
+					"slug": "small",
+					"name": "Kecil",
+					"size": "0.92rem"
+				},
+				{
+					"slug": "medium",
+					"name": "Normal",
+					"size": "1.0625rem"
+				},
+				{
+					"slug": "large",
+					"name": "Besar",
+					"size": "1.15rem"
+				},
+				{
+					"slug": "x-large",
+					"name": "Sangat besar",
+					"size": "1.6rem"
+				}
+			],
+			"fontFamilies": [
+				{
+					"slug": "nunito",
+					"name": "Nunito (teks)",
+					"fontFamily": "\"Nunito\", ui-rounded, \"Segoe UI\", system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Nunito",
+							"fontWeight": "400 800",
+							"fontStyle": "normal",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/nunito-latin.woff2"
+							]
+						}
+					]
+				},
+				{
+					"slug": "fredoka",
+					"name": "Fredoka (judul)",
+					"fontFamily": "\"Fredoka\", \"Baloo 2\", ui-rounded, \"Segoe UI\", sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Fredoka",
+							"fontWeight": "500 700",
+							"fontStyle": "normal",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/fredoka-latin.woff2"
+							]
+						}
+					]
+				}
+			]
+		},
+		"spacing": {
+			"units": [
+				"px",
+				"rem",
+				"%",
+				"vw"
+			],
+			"blockGap": null
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--cream)",
+			"text": "var(--wp--preset--color--ink)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--nunito)",
+			"fontSize": "17px",
+			"lineHeight": "1.65"
+		},
+		"spacing": {
+			"padding": {
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
+			}
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "inherit"
+				}
+			},
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--fredoka)",
+					"fontWeight": "700",
+					"lineHeight": "1.15",
+					"letterSpacing": "-0.01em"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "clamp(2.3rem, 6.2vw, 4rem)"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "clamp(1.8rem, 4.2vw, 2.7rem)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "1.3rem"
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--orange-d)",
+					"text": "var(--wp--preset--color--ink)"
+				},
+				"border": {
+					"width": "3px",
+					"style": "solid",
+					"color": "var(--wp--preset--color--ink)",
+					"radius": "999px"
+				},
+				"typography": {
+					"fontFamily": "inherit",
+					"fontSize": "inherit",
+					"fontWeight": "800",
+					"lineHeight": "1.25"
+				},
+				"spacing": {
+					"padding": {
+						"top": "12px",
+						"right": "26px",
+						"bottom": "12px",
+						"left": "26px"
+					}
+				}
+			}
+		}
+	},
+	"customTemplates": [
+		{
+			"name": "page-judul",
+			"title": "Halaman biasa (dengan judul)",
+			"postTypes": [
+				"page"
+			]
+		}
+	],
+	"templateParts": [
+		{
+			"name": "header",
+			"title": "Header",
+			"area": "header"
+		},
+		{
+			"name": "footer",
+			"title": "Footer",
+			"area": "footer"
+		}
+	]
+}

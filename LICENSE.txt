@@ -1,0 +1,7 @@
+Theme ini dibuat oleh Hay Digital (https://haydigital.id) dan dilisensikan di bawah
+GNU General Public License versi 2 atau yang lebih baru (GPL-2.0-or-later).
+
+Teks lengkap lisensi: https://www.gnu.org/licenses/gpl-2.0.html
+
+Anda boleh menggunakan, mempelajari, memodifikasi, dan membagikan ulang theme ini
+sesuai ketentuan GPL. Font dan aset pihak ketiga di dalam theme mengikuti lisensi masing-masing.

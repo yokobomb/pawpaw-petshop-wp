@@ -1,0 +1,424 @@
+/*
+Theme Name: PawPaw Petshop
+Theme URI: https://haydigital.id
+Author: Hay Digital
+Description: Tema blok WordPress untuk PawPaw Petshop: gaya playful krem, oranye pastel, dan biru muda. Produk, layanan grooming, nomor WhatsApp, alamat, dan jam buka bisa diedit langsung dari dashboard. Semua tombol pemesanan mengarah ke WhatsApp.
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: pawpaw
+Tags: full-site-editing, block-patterns, e-commerce, one-column, custom-colors
+*/
+
+/* ============================================================
+   Warna mengikuti palet di Tampilan > Editor > Gaya, jadi kalau
+   palet diganti di sana, seluruh situs ikut berubah.
+   ============================================================ */
+:root {
+  --cream: var(--wp--preset--color--cream, #FFF6E8);
+  --cream-2: var(--wp--preset--color--cream-2, #FFEBD3);
+  --orange: var(--wp--preset--color--orange, #FFC7A0);
+  --orange-d: var(--wp--preset--color--orange-d, #F9954F);
+  --blue: var(--wp--preset--color--blue, #CDE8F8);
+  --blue-d: var(--wp--preset--color--blue-d, #8CC6EA);
+  --ink: var(--wp--preset--color--ink, #3B2A22);
+  --ink-soft: var(--wp--preset--color--ink-soft, #6A5448);
+  --white: var(--wp--preset--color--white, #fff);
+  --font-judul: var(--wp--preset--font-family--fredoka, "Fredoka", ui-rounded, sans-serif);
+  --shadow: 0 10px 28px rgba(59, 42, 34, .12);
+  --shadow-lg: 0 18px 38px rgba(59, 42, 34, .18);
+  --paw-o: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23FFB98A'%3E%3Cellipse cx='32' cy='42' rx='15' ry='12'/%3E%3Ccircle cx='14' cy='28' r='7'/%3E%3Ccircle cx='26' cy='16' r='7'/%3E%3Ccircle cx='42' cy='16' r='7'/%3E%3Ccircle cx='54' cy='28' r='7'/%3E%3C/g%3E%3C/svg%3E");
+  --paw-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%238CC6EA'%3E%3Cellipse cx='32' cy='42' rx='15' ry='12'/%3E%3Ccircle cx='14' cy='28' r='7'/%3E%3Ccircle cx='26' cy='16' r='7'/%3E%3Ccircle cx='42' cy='16' r='7'/%3E%3Ccircle cx='54' cy='28' r='7'/%3E%3C/g%3E%3C/svg%3E");
+  --blob-1: 58% 42% 52% 48% / 48% 56% 44% 52%;
+  --blob-2: 44% 56% 40% 60% / 55% 45% 55% 45%;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-x: hidden; padding-bottom: 8px; }
+.wp-site-blocks { padding: 0; }
+
+h1, h2, h3, h4 { margin: 0 0 .5em; }
+p { margin: 0 0 1em; }
+img { max-width: 100%; height: auto; display: block; }
+:focus-visible { outline: 4px solid var(--blue-d); outline-offset: 3px; border-radius: 12px; }
+
+.container { width: min(1120px, 100% - 40px); margin-inline: auto; }
+.section { padding: 72px 0; scroll-margin-top: 90px; }
+.panel {
+  width: min(1200px, 100% - 24px);
+  margin: 0 auto 32px;
+  padding: 72px 0;
+  border-radius: 52px;
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 90px;
+}
+.panel--orange { background: var(--cream-2); }
+.panel--blue { background: var(--blue); }
+.panel--peach { background: var(--orange); }
+.panel > .container { position: relative; z-index: 1; }
+
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+.section-head > p:not(.eyebrow) { color: var(--ink-soft); margin-bottom: 0; }
+.eyebrow {
+  display: inline-block;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-weight: 700;
+  font-size: .92rem;
+  margin: 0 0 16px;
+}
+.center { text-align: center; margin-top: 40px; }
+.center.wp-block-buttons, .wp-block-buttons.center { justify-content: center; }
+
+/* ---------- Tombol (blok Tombol WordPress + tombol dari blok PawPaw) ---------- */
+.wp-block-buttons { display: flex; flex-wrap: wrap; gap: 16px; }
+.wp-block-button .wp-block-button__link,
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 50px; padding: 12px 26px;
+  background: var(--orange-d);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 5px 0 var(--ink);
+  font: inherit; font-weight: 800; text-decoration: none; text-align: center; line-height: 1.25;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.wp-block-button .wp-block-button__link:hover, .btn:hover { transform: translateY(-3px) rotate(-1deg); box-shadow: 0 8px 0 var(--ink); color: var(--ink); }
+.wp-block-button .wp-block-button__link:active, .btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
+.wp-block-button.is-style-biru .wp-block-button__link, .btn--blue { background: var(--blue); }
+.wp-block-button.is-style-putih .wp-block-button__link, .btn--white { background: var(--white); }
+.btn--sm .wp-block-button__link, .btn--sm { min-height: 46px; padding: 8px 20px; font-size: .95rem; }
+.btn--block { width: 100%; }
+.wp-block-button.has-custom-width .wp-block-button__link { width: 100%; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 246, 232, .97);
+  border-bottom: 3px dashed rgba(249, 149, 79, .35);
+}
+.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 32px); }
+@media (max-width: 600px) { .admin-bar .site-header { top: 0; } }
+.header__in { display: flex; flex-wrap: nowrap; align-items: center; gap: 20px; min-height: 78px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex: none; color: var(--ink); }
+.logo__mark {
+  width: 46px; height: 46px; flex: none;
+  display: grid; place-items: center;
+  background: var(--orange); border: 3px solid var(--ink);
+  border-radius: var(--blob-1);
+  transition: transform .3s ease;
+}
+.logo:hover .logo__mark { transform: rotate(-12deg) scale(1.06); }
+.logo__img { max-height: 56px; width: auto; }
+.logo__text { display: flex; flex-direction: column; font-family: var(--font-judul); font-weight: 700; font-size: 1.45rem; line-height: 1; margin: 0; }
+.logo__text small { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
+
+.site-header .wp-block-navigation { margin-inline: auto; font-weight: 700; }
+.site-header .wp-block-navigation .wp-block-navigation__container { gap: 4px; }
+.site-header .wp-block-navigation-item__content {
+  padding: 10px 16px !important; border-radius: 999px; text-decoration: none;
+  white-space: nowrap; transition: background-color .15s ease;
+}
+.site-header .wp-block-navigation-item__content:hover,
+.site-header .current-menu-item > .wp-block-navigation-item__content,
+.site-header .wp-block-navigation-item__content[aria-current="page"] { background: var(--blue); }
+.header__cta { flex: none; }
+.header__cta .wp-block-button__link { white-space: nowrap; }
+
+/* tombol burger & menu HP */
+.wp-block-navigation__responsive-container-open {
+  width: 52px; height: 52px; display: grid; place-items: center;
+  background: var(--blue); border: 3px solid var(--ink); border-radius: 18px; color: var(--ink);
+}
+.wp-block-navigation__responsive-container-open svg { width: 28px; height: 28px; }
+.wp-block-navigation__responsive-container.is-menu-open {
+  background: var(--cream) !important; color: var(--ink) !important;
+  padding: 24px !important;
+}
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+  font-size: 1.15rem; padding: 14px 22px !important;
+}
+.wp-block-navigation__responsive-container-close {
+  width: 48px; height: 48px; display: grid; place-items: center;
+  background: var(--orange); border: 3px solid var(--ink) !important; border-radius: 16px;
+}
+/* Menu jadi tombol burger di layar ≤ 1040px (tablet & HP) */
+@media (max-width: 1040px) {
+  .site-header .wp-block-navigation__responsive-container-open:not(.always-shown) { display: grid !important; }
+  .site-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) { display: none !important; }
+  .site-header .wp-block-navigation { margin-inline: 0; order: 3; --navigation-layout-justification-setting: flex-start; --navigation-layout-justify: flex-start; --navigation-layout-align: flex-start; }
+  .header__cta { margin-left: auto; }
+  .site-header .wp-block-navigation__responsive-container.is-menu-open { display: flex !important; flex-direction: column; }
+  .site-header .is-menu-open .wp-block-navigation__responsive-container-close { display: grid !important; }
+  .site-header .is-menu-open .wp-block-navigation__container { flex-direction: column; align-items: flex-start !important; margin: 0 !important; width: 100%; }
+  .site-header .is-menu-open .wp-block-navigation__responsive-container-content { align-items: flex-start !important; padding-top: 72px; }
+}
+@media (max-width: 599px) {
+  .header__in { gap: 12px; }
+  .site-header .header__cta { display: none !important; }
+  .site-header .wp-block-navigation { margin-left: auto; }
+}
+
+/* ---------- Dekorasi jejak kaki (otomatis, tidak perlu diedit) ---------- */
+.page-hero::before, .page-hero::after,
+.hero::before, .hero::after,
+.panel--orange.has-paw::after, .panel--blue.has-paw::after {
+  content: ""; position: absolute; width: 46px; aspect-ratio: 1; pointer-events: none;
+  background: var(--paw-o) center / contain no-repeat; z-index: 0;
+}
+.page-hero::before { left: 8%; top: 18%; transform: rotate(-16deg); width: 40px; }
+.page-hero::after { right: 9%; bottom: 16%; transform: rotate(20deg); width: 52px; }
+.hero::before { right: 2%; top: 40px; transform: rotate(18deg); }
+.hero::after { right: 44%; bottom: 20px; width: 36px; transform: rotate(10deg); background-image: var(--paw-b); }
+.panel--orange.has-paw::after { right: 5%; top: 28px; transform: rotate(16deg); background-image: var(--paw-b); }
+.panel--blue.has-paw::after { left: 4%; bottom: 26px; transform: rotate(-14deg); }
+
+/* ---------- Hero Beranda ---------- */
+.hero { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 40px; padding: 56px 0; }
+.hero__text .lead { font-size: 1.15rem; color: var(--ink-soft); max-width: 34em; margin-bottom: 28px; }
+.hero__text h1 mark { background: linear-gradient(transparent 62%, var(--orange) 62%) !important; color: inherit !important; }
+.hero__art { position: relative; width: 100%; max-width: 540px; aspect-ratio: 1; justify-self: center; }
+.hero__art::before, .hero__art::after { content: ""; position: absolute; z-index: 0; }
+.hero__art::before { width: 72%; aspect-ratio: 1; right: 0; top: 4%; background: var(--orange); border-radius: var(--blob-1); }
+.hero__art::after { width: 48%; aspect-ratio: 1; left: 0; bottom: 0; background: var(--blue); border-radius: var(--blob-2); }
+
+.photo {
+  position: absolute; margin: 0 !important; overflow: hidden; z-index: 1;
+  background: var(--blue);
+  border: 6px solid var(--white);
+  box-shadow: var(--shadow-lg);
+  transition: transform .3s ease;
+}
+.photo img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover; }
+.photo img[src$=".svg"] { object-fit: contain; padding: 12%; }
+.photo figcaption { display: none; }
+.photo--cat { left: 3%; top: 0; width: 56%; aspect-ratio: 4 / 5; border-radius: 46% 54% 48% 52% / 42% 40% 60% 58%; transform: rotate(-4deg); background: var(--orange); }
+.photo--dog { right: 0; bottom: 2%; width: 56%; aspect-ratio: 1; border-radius: 55% 45% 42% 58% / 50% 55% 45% 50%; transform: rotate(4deg); }
+.hero__art:hover .photo--cat { transform: rotate(-1deg) scale(1.02); }
+.hero__art:hover .photo--dog { transform: rotate(1deg) scale(1.02); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: 36px; gap: 32px; }
+  .hero__art { max-width: 420px; }
+}
+
+/* ---------- Kategori ---------- */
+.cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.cat {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px;
+  padding: 26px 14px 22px; text-decoration: none; color: var(--ink);
+  background: var(--white);
+  border: 3px solid var(--ink); border-radius: 36px 36px 44px 28px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.cat:hover { transform: translateY(-6px) rotate(-1.5deg); box-shadow: 0 10px 0 var(--ink); }
+.cat__emoji { width: 76px; height: 76px; display: grid; place-items: center; font-size: 2.3rem; border-radius: var(--blob-1); margin-bottom: 8px; }
+.cat--o .cat__emoji { background: var(--orange); }
+.cat--b .cat__emoji { background: var(--blue); }
+.cat__label { font-family: var(--font-judul); font-weight: 700; font-size: 1.2rem; }
+.cat__desc { font-size: .88rem; color: var(--ink-soft); line-height: 1.4; }
+@media (max-width: 960px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+
+/* ---------- Kartu & grid ---------- */
+.grid { display: grid; gap: 24px; }
+.grid--products { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.grid--services { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.grid--features { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+
+.card {
+  background: var(--white); border-radius: 32px; overflow: hidden;
+  border: 2px solid rgba(59, 42, 34, .12);
+  box-shadow: var(--shadow);
+  transition: transform .22s ease, box-shadow .22s ease;
+  display: flex; flex-direction: column;
+}
+.card:hover { transform: translateY(-7px) rotate(-.6deg); box-shadow: var(--shadow-lg); }
+.card__img { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--blue); }
+.product:nth-child(even) .card__img { background: var(--orange); }
+.card__img .emoji { font-size: 4rem; transition: transform .25s ease; }
+.card:hover .card__img .emoji { transform: scale(1.12) rotate(-6deg); }
+.card__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.card__body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.card__body h3 { margin-bottom: .3em; }
+.card__body p { color: var(--ink-soft); font-size: .96rem; margin-bottom: .8em; }
+.card__body .btn { margin-top: auto; }
+.tag { align-self: flex-start; background: var(--cream-2); border-radius: 999px; padding: 2px 12px; font-size: .8rem; font-weight: 800; margin-bottom: 10px; }
+.price { font-family: var(--font-judul); font-weight: 700; font-size: 1.25rem; color: var(--ink) !important; margin-bottom: 1em !important; }
+
+.service { padding: 28px 24px 26px; text-align: center; align-items: center; }
+.service .btn { margin-top: auto; }
+.service p { color: var(--ink-soft); font-size: .96rem; }
+.service__emoji { width: 84px; height: 84px; display: grid; place-items: center; font-size: 2.5rem; background: var(--orange); border-radius: var(--blob-1); margin-bottom: 16px; }
+.service:nth-child(even) .service__emoji { background: var(--blue); }
+
+.feature { text-align: center; padding: 8px 12px; }
+.feature__emoji { display: grid; place-items: center; width: 82px; height: 82px; margin: 0 auto 14px !important; font-size: 1.9rem; line-height: 1; background: var(--blue); border-radius: var(--blob-2); border: 3px solid var(--ink); }
+.feature:nth-child(even) .feature__emoji { background: var(--orange); }
+.feature p:not(.feature__emoji) { color: var(--ink-soft); font-size: .96rem; margin: 0; }
+
+.pawpaw-kosong { text-align: center; color: var(--ink-soft); background: var(--white); border: 3px dashed var(--ink); border-radius: 28px; padding: 24px; grid-column: 1 / -1; }
+
+/* ---------- FAQ (blok Detail WordPress) ---------- */
+.faq { max-width: 780px; margin-inline: auto; display: grid; gap: 14px; }
+.faq details { background: var(--white); border: 3px solid var(--ink); border-radius: 28px; padding: 0 24px; transition: box-shadow .2s ease; margin: 0; }
+.faq details[open] { box-shadow: 0 6px 0 var(--ink); }
+.faq summary { cursor: pointer; list-style: none; font-weight: 800; font-size: 1.05rem; padding: 18px 40px 18px 0; position: relative; min-height: 56px; display: flex; align-items: center; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; line-height: 28px; text-align: center; border-radius: 50%; background: var(--orange); border: 2px solid var(--ink); font-size: 1.3rem; transition: transform .2s ease; }
+.faq details[open] summary::after { content: "–"; background: var(--blue); }
+.faq details > *:not(summary) { color: var(--ink-soft); margin: 0; padding-bottom: 20px; }
+
+/* ---------- Kontak ---------- */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+.info-card { background: var(--white); border: 3px solid var(--ink); border-radius: 36px; padding: 32px 30px; }
+.info-card h3 { display: flex; align-items: center; gap: 10px; }
+.info-card p, .info-card li { color: var(--ink-soft); }
+.info-list { list-style: none; margin: 0; padding: 0; }
+.hours li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 2px dotted rgba(59, 42, 34, .2); }
+.hours li:last-child { border-bottom: 0; }
+.hours strong { color: var(--ink); }
+.info-stack { display: grid; gap: 22px; align-content: start; }
+.info-stack .info-card { padding: 26px 28px; }
+.info-card > :last-child { margin-bottom: 0; }
+.cta-card { background: var(--white); border: 3px solid var(--ink); border-radius: 36px; padding: 36px 32px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.cta-card p { color: var(--ink-soft); max-width: 26em; }
+.cta-card .wp-block-buttons { justify-content: center; }
+.cta-card--narrow { max-width: 640px; margin-inline: auto; }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.map-ph {
+  min-height: 260px; display: grid; place-items: center; text-align: center; padding: 24px;
+  background: var(--blue) var(--paw-b) 92% 20% / 56px no-repeat;
+  border: 3px dashed var(--ink); border-radius: 36px; color: var(--ink-soft);
+}
+.map-ph p { margin: 0; }
+.map-ph.has-map { padding: 0; border-style: solid; overflow: hidden; display: block; }
+.map-ph iframe { display: block; width: 100%; min-height: 360px; border: 0; }
+
+form.wa-form { display: grid; gap: 14px; text-align: left; }
+.wa-form label { font-weight: 800; font-size: .95rem; display: grid; gap: 6px; color: var(--ink); }
+.wa-form input, .wa-form select, .wa-form textarea {
+  font: inherit; font-size: 16px; color: var(--ink);
+  padding: 13px 16px; min-height: 50px;
+  background: var(--cream); border: 3px solid var(--ink); border-radius: 20px; width: 100%;
+}
+.wa-form textarea { min-height: 110px; resize: vertical; }
+
+/* ---------- Hero halaman dalam ---------- */
+.page-hero { text-align: center; padding: 64px 0 56px; margin-top: 20px; }
+.page-hero > .container { position: relative; z-index: 1; max-width: 760px; }
+.page-hero + .section { padding-top: 56px; }
+.page-hero .container > p:not(.eyebrow) { color: var(--ink-soft); font-size: 1.1rem; margin-bottom: 0; }
+
+/* ---------- Katalog ---------- */
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 44px; }
+.chip {
+  font: inherit; font-weight: 800; min-height: 48px; padding: 8px 20px;
+  background: var(--white); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 999px; cursor: pointer;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.chip:hover { transform: translateY(-3px) rotate(-1deg); }
+.chip[aria-pressed="true"] { background: var(--orange-d); box-shadow: 0 4px 0 var(--ink); }
+.cat-block { margin-bottom: 56px; scroll-margin-top: 100px; }
+.cat-block h2 { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.cat-block__emoji { display: grid; place-items: center; width: 58px; height: 58px; font-size: 1.7rem; background: var(--blue); border-radius: var(--blob-1); }
+
+/* ---------- Tentang & langkah ---------- */
+.split { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
+.split .photo { position: relative; width: 100%; aspect-ratio: 1; border-radius: 55% 45% 42% 58% / 50% 55% 45% 50%; background: var(--orange); transform: rotate(-3deg); }
+.split .photo:hover { transform: rotate(0); }
+.split__text p { color: var(--ink-soft); }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 32px; } .split .photo { max-width: 360px; margin-inline: auto !important; } }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; counter-reset: s; }
+.step { background: var(--white); border: 3px solid var(--ink); border-radius: 32px; padding: 30px 26px 26px; position: relative; counter-increment: s; }
+.step::before {
+  content: counter(s); position: absolute; top: -20px; left: 24px;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  font-family: var(--font-judul); font-weight: 700; font-size: 1.3rem;
+  background: var(--orange-d); border: 3px solid var(--ink); border-radius: 50%;
+}
+.step p { color: var(--ink-soft); margin: 0; }
+.panel--orange .steps { margin-top: 20px; }
+
+.duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.duo .info-card { transition: transform .2s ease; }
+.duo .info-card:hover { transform: translateY(-5px) rotate(-.5deg); }
+.duo .wp-block-buttons { margin-top: 8px; }
+
+/* ---------- Halaman biasa & blog ---------- */
+.konten-biasa { padding: 56px 0 72px; }
+.konten-biasa .wp-block-post-title { text-align: center; margin-bottom: 32px; }
+.konten-biasa .wp-block-post-content { max-width: 760px; margin-inline: auto; }
+.konten-biasa .wp-block-post-content a { color: var(--ink); text-decoration-color: var(--orange-d); text-decoration-thickness: 3px; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: var(--cream); border-radius: 52px 52px 0 0; margin-top: 40px; padding: 56px 0 0; }
+.footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 36px; }
+.site-footer .footer__brand { font-family: var(--font-judul); font-weight: 700; font-size: 1.6rem; color: var(--cream) !important; line-height: 1.15; }
+.site-footer .footer__title { font-weight: 800; color: var(--orange) !important; margin-bottom: 10px; }
+.site-footer a { text-decoration: none; color: inherit; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer p, .site-footer li { color: #EADBCB; font-size: .98rem; }
+.site-footer .wp-block-navigation { font-size: .98rem; color: #EADBCB; }
+.site-footer .wp-block-navigation .wp-block-navigation__container { gap: 6px; }
+.site-footer .wp-block-navigation-item__content { padding: 0 !important; }
+.site-footer .pawpaw-info { margin-bottom: 6px; }
+.footer__copy { padding: 26px 0 30px; margin-top: 36px; border-top: 2px dashed rgba(255, 246, 232, .25); font-size: .9rem; }
+.footer__copy p { color: #CBB8A6; font-size: .9rem; margin: 0; }
+@media (max-width: 760px) { .footer__grid { grid-template-columns: 1fr; gap: 28px; } }
+
+/* ---------- Tombol WA melayang ---------- */
+.wa-float {
+  position: fixed; right: 16px; bottom: 16px; z-index: 40;
+  min-height: 54px; padding: 10px 20px;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--orange-d); color: var(--ink) !important;
+  border: 3px solid var(--ink); border-radius: 999px; box-shadow: 0 5px 0 var(--ink);
+  font-weight: 800; text-decoration: none !important;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 0 var(--ink); }
+.editor-styles-wrapper .wa-float { position: static; }
+
+/* ---------- Responsif umum ---------- */
+@media (max-width: 640px) {
+  body { font-size: 16.5px; }
+  .section { padding: 52px 0; }
+  .panel { padding: 52px 0; border-radius: 34px; width: calc(100% - 16px); }
+  .site-footer { border-radius: 34px 34px 0 0; }
+  .hero__text .wp-block-buttons .wp-block-button, .info-card .wp-block-buttons .wp-block-button { flex: 1 1 100%; }
+  .hero__text .wp-block-buttons .wp-block-button__link, .info-card .wp-block-buttons .wp-block-button__link { width: 100%; }
+  .hero { padding-bottom: 36px; }
+  .info-card, .cta-card { padding: 26px 22px; }
+  .grid--products { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .wp-block-button__link:hover, .btn:hover, .card:hover, .cat:hover, .chip:hover { transform: none; }
+}
+
+/* ---------- Editor: biar tampilan di editor mirip situs ---------- */
+.editor-styles-wrapper .photo > div,
+.editor-styles-wrapper .photo .components-resizable-box__container { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; }
+.editor-styles-wrapper .photo .components-resizable-box__handle { display: none; }
+.editor-styles-wrapper .wp-block-pawpaw-katalog .chip,
+.editor-styles-wrapper .cat, .editor-styles-wrapper .btn { pointer-events: none; }
